@@ -22,6 +22,8 @@ void debug (T x)
 	cerr << ">>> " << x << endl;
 }
 
+const double inf = 1e12;
+
 //util classes
 struct Input {
   int r, c, f, n, b, t;

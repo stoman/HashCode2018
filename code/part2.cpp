@@ -39,7 +39,7 @@ double score(Input& input, int time, int r, int c, int ride, int carid) {
   int drivetime = abs(input.ra[ride] - input.rx[ride]) + abs(input.rb[ride] - input.ry[ride]);
   int endtime = time + pretime + drivetime;
   if(endtime >= input.rf[ride] || endtime > input.t) {
-    return -999999999.9;
+    return -10.*inf;
   }
 
   //scoring: drive time, pre time
