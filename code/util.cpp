@@ -19,7 +19,7 @@ typedef pair<ll, ll> Point;
 template<typename T>
 void debug (T x)
 {
-	//cerr << ">>> " << x << endl;
+	cerr << ">>> " << x << endl;
 }
 
 const double inf = 1e12;
