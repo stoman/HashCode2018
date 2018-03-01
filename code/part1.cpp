@@ -1,6 +1,14 @@
 #pragma once
 #include "util.cpp"
 
+ll lastStartPoint(Input &input, int ride)
+{
+    ll last = input.rf[ride];
+    ll drivetime = abs(input.ra[ride] - input.rx[ride]) + abs(input.rb[ride] - input.ry[ride]);
+    return last - drivetime;
+}
+
+
 void assignrides(Input& input) {
     set<pair<int,int>> q;
     set<int> rides;
@@ -8,11 +16,27 @@ void assignrides(Input& input) {
     for (int i = 0; i < input.f; i++)
         q.insert({0,i});
     for (int i = 0; i < input.n; i++)
+    {
+        //priorides.insert(make_pair(input.rs[i],i));
         rides.insert(i);
+    }
          
     while (q.size() && q.begin()->first < input.t)    {
     
         int t = q.begin()->first;
+
+
+        vector<int> deleteIds;
+        for (auto i = rides.begin(); i != rides.end(); ++i)
+        {
+            if (lastStartPoint(input, *i) < t)
+                deleteIds.push_back(*i);
+        }
+        for (int k : deleteIds)
+        {
+            rides.erase(k);
+        }
+
         int car = q.begin()->second;
         cerr << t << ' ' << car << endl;
         q.erase(q.begin());
