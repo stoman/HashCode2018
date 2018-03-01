@@ -1,7 +1,6 @@
 #include "util.cpp"
 #include "part1.cpp"
 #include "part2.cpp"
-#include "part3.cpp"
 
 //input/output code
 int main(int argc, char* argv[]) {

@@ -1,6 +1,6 @@
 #pragma once
 #include "util.cpp"
 
-void balle(Input& input) {
+void assignrides(Input& input) {
 	//TODO fill me
 }
