@@ -30,6 +30,7 @@ struct Input {
   vector<vector<int>> paths, cntcars;
   vector<ll> ra, rb, rx, ry, rs, rf;
   int cellcnt = 10;
+  char problem;
 };
 
 //input handling
@@ -48,6 +49,17 @@ void readInput(Input& input, istream& in) {
   input.cntcars.resize(input.cellcnt);
   for (int i = 0; i < input.cellcnt; i++)
       input.cntcars[i] = vector<int>(input.cellcnt, 0);
+
+
+  switch(input.r)
+  {
+  	case 3: input.problem = 'a'; break;
+  	case 800: input.problem = 'b'; break;
+  	case 3000: input.problem = 'c'; break;
+  	case 10000: input.problem = 'd'; break;
+  	case 1500: input.problem = 'e'; break;
+  	default: cerr << "PROBLEM NOT DETECTED" << endl; exit(0);
+  }
 }
 
 double score(Input& input, int time, int r, int c, int ride, int carid);
