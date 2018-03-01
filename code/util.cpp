@@ -47,7 +47,7 @@ void readInput(Input& input, istream& in) {
   }
   input.cntcars.resize(input.cellcnt);
   for (int i = 0; i < input.cellcnt; i++)
-      input.cntcars[i] = vector<int>(inpuout.cellcnt, 0);
+      input.cntcars[i] = vector<int>(input.cellcnt, 0);
 }
 
 double score(Input& input, int time, int r, int c, int ride, int carid);
