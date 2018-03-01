@@ -25,8 +25,9 @@ void debug (T x)
 //util classes
 struct Input {
   int r, c, f, n, b, t;
-  vector<vector<int>> paths;
+  vector<vector<int>> paths, cntcars;
   vector<ll> ra, rb, rx, ry, rs, rf;
+  int cellcnt = 10;
 };
 
 //input handling
@@ -42,7 +43,20 @@ void readInput(Input& input, istream& in) {
   for(int i = 0; i < input.n; i++) {
     in >> input.ra[i] >> input.rb[i] >> input.rx[i] >> input.ry[i] >> input.rs[i] >> input.rf[i];
   }
+  input.cntcars.resize(input.cellcnt);
+  for (int i = 0; i < input.cellcnt; i++)
+      input.cntcars[i] = vector<int>(input.cellcnt, 0);
 }
 
 double score(Input& input, int time, int r, int c, int ride, int carid);
 int endtime(Input& input, int time, int r, int c, int ride);
+
+
+pair<int,int> cellid(Input &input, int x, int y)  {
+    // dimension of a cell
+    int cellr = (input.r+input.cellcnt-1) / input.cellcnt;
+    int cellc = (input.c+input.cellcnt-1) / input.cellcnt;
+
+    return {x/cellr, y/cellc}; 
+}
+ 

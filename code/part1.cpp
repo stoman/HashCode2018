@@ -23,6 +23,9 @@ void assignrides(Input& input) {
             c = input.ry[last_ride];
         }
         
+        auto cell = cellid(input, r, c);
+        input.cntcars[cell.first][cell.second]--;
+        
         double max_score = -1.0;
         int bi = -1;
         
@@ -69,6 +72,9 @@ void assignrides(Input& input) {
             input.paths[car].push_back(bi);
             rides.erase(bi);
             q.insert({endtime(input, t, r, c, bi), car});
+    
+            auto cell = cellid(input, input.rx[bi], input.ry[bi]); 
+            input.cntcars[cell.first][cell.second]++;
         }
     }
 }
