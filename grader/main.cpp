@@ -18,25 +18,31 @@ long manhattan(long a, long b, long x, long y) {
 //grade one single test case
 int gradeFile(ifstream& in, ifstream& ans) {
   //read input
-  Input input;
-  readInput(input, in);
   
   //read answer
   //TODO read answer
-  long r, c, veh, n, bon;
-  in >> r >> c >> veh >> n >> bon;
+  long r, c, veh, n, bon, t;
+  in >> r >> c >> veh >> n >> bon >> t;
 
+  cerr << "scoring " << n << " veh" << endl;
   vector<long> distances;
   for (int i = 0; i < n; i++) {
-    long a, b, x, y;
-    in >> a >> b >> x >> y;
+    long a, b, x, y, s, f;
+    in >> a >> b >> x >> y >> s >> f;
+    // cerr << a << " "<< b << " " << x << " " << y;
     distances.push_back(manhattan(a, b, x, y));
+    // cerr << manhattan(a,b,x,y) << endl;
   }
+  // cerr << "Distances " << endl;
+  // for (auto d : distances) {
+  //   cerr << " " << d << endl;
+  // }
   // ignore bonus
   long points = 0;
   for (int i = 0; i < veh; i++) {
     long num;
     ans >> num;
+    // cerr << "num " << num << endl;
 
     for (int j = 0; j < num; j++) {
       long r;
@@ -44,6 +50,7 @@ int gradeFile(ifstream& in, ifstream& ans) {
       points += distances[r];
     }
   }
+  // cerr << "Score " << points << endl;
   //compute score
   //TODO compute score
   return points;
