@@ -43,3 +43,6 @@ void readInput(Input& input, istream& in) {
     in >> input.ra[i] >> input.rb[i] >> input.rx[i] >> input.ry[i] >> input.rs[i] >> input.rf[i];
   }
 }
+
+double score(Input& input, int time, int r, int c, int ride, int carid);
+int endtime(Input& input, int time, int r, int c, int ride);
