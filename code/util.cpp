@@ -1,8 +1,5 @@
 #pragma once
 
-typedef long long ll;
-typedef pair<ll, ll> Point;
-
 #include <algorithm>
 #include <iostream>
 #include <limits>
@@ -15,6 +12,9 @@ typedef pair<ll, ll> Point;
 #include <sstream>
 
 using namespace std;
+
+typedef long long ll;
+typedef pair<ll, ll> Point;
 
 template<typename T>
 void debug (T x)
