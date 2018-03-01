@@ -26,7 +26,7 @@ void assignrides(Input& input) {
         int t = q.begin()->first;
 
 
-        vector<int> deleteIds;
+        /*vector<int> deleteIds;
         for (auto i = rides.begin(); i != rides.end(); ++i)
         {
             if (lastStartPoint(input, *i) < t)
@@ -35,7 +35,7 @@ void assignrides(Input& input) {
         for (int k : deleteIds)
         {
             rides.erase(k);
-        }
+        }*/
 
         int car = q.begin()->second;
         cerr << t << ' ' << car << endl;
@@ -54,7 +54,7 @@ void assignrides(Input& input) {
 
         int bi = -1;
         
-        if (rides.size() > 700)//if (rides.size() == 1)
+        if (rides.size() > 0)//if (rides.size() == 1)
         {
             for (auto i = rides.begin(); i != rides.end(); i++) {
                 int next_ride = *i;

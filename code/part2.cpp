@@ -23,13 +23,13 @@ double score(Input& input, int time, int r, int c, int ride, int carid) {
 
   //coefficients
   double drivetimefactor = 1.0;
-  double bonusfactor = 2.0;
+  double bonusfactor = 50.0;
   double pretimefactor = -50.0;
   double pretimesquarefactor = -.05;
   double cardistancefactor = 0;
   double gridfactor = 100.0;
   int gridsize = 500;
-  int timegrid = 1000;
+  int timegrid = 200;
 
   if(input.problem == 'd') {
     pretimefactor = -50.0;
@@ -88,7 +88,7 @@ double score(Input& input, int time, int r, int c, int ride, int carid) {
     for(int i = 0; i < input.n; i++) {
       int laststart = input.rf[i] - abs(input.ra[i] - input.rx[i]) - abs(input.rb[i] - input.ry[i]);
       for(int t = input.rs[i]; t < laststart; t += timegrid) {
-        ridescore[input.ra[i]/gridsize][input.rb[i]/gridsize][t/timegrid] += 1;
+        ridescore[input.ra[i]/gridsize][input.rb[i]/gridsize][t/timegrid+1] += 1;
       }
     }
   }
