@@ -32,6 +32,7 @@ int gradeFile(ifstream& in, ifstream& ans) {
     in >> a >> b >> x >> y;
     distances.push_back(manhattan(a, b, x, y));
   }
+  // ignore bonus
   long points = 0;
   for (int i = 0; i < veh; i++) {
     long num;
