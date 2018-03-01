@@ -14,6 +14,7 @@ void assignrides(Input& input) {
     
         int t = q.begin()->first;
         int car = q.begin()->second;
+        cerr << t << ' ' << car << endl;
         q.erase(q.begin());
         
         int r = 0, c = 0;
@@ -23,7 +24,7 @@ void assignrides(Input& input) {
             c = input.ry[last_ride];
         }
         
-        double max_score = -1.0;
+        double max_score = -99999999999.9;
         int bi = -1;
         
         if (true)//if (rides.size() == 1)

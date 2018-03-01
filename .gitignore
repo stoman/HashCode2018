@@ -3,7 +3,7 @@
 *.ans
 *.png
 *.zip
-main
+code/main
 vis
 grades.html
 commit-*

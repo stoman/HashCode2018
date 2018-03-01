@@ -40,17 +40,16 @@ double score(Input& input, int time, int r, int c, int ride, int carid) {
 
   //score: bonus
   debug("bonus");
-  double bonus = time + pretime == input.rs[ride] ? input.b : 0.0;
+  double bonus = time + pretime == input.rs[ride] ? bonusfactor * input.b : 0.0;
   debug(bonus);
   score += bonus;
 
-  //scoring: car distance time
+  //scoring: car distance
   double cardistscore = 0;
   for(int c = 0; c < input.f; c++) {
-    if(c == carid || input.paths[c].size() == 0) {
-      continue;
+    if(c != carid && input.paths[c].size() != 0) {
+      cardistscore += cardistancefactor * (abs(input.rx[input.paths[c].back()] - input.rx[ride]) + abs(input.ry[input.paths[c].back()] - input.ry[ride]));
     }
-    cardistscore += cardistancefactor * (abs(input.rx[input.paths[c].back()] - input.rx[ride]) + abs(input.ry[input.paths[c].back()] - input.ry[ride]));
   }
   debug("car dist score");
   debug(cardistscore);
