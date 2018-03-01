@@ -11,6 +11,10 @@
 
 using namespace std;
 
+long manhattan(long a, long b, long x, long y) {
+  return abs(x - a) + abs(y - b);
+}
+
 //grade one single test case
 int gradeFile(ifstream& in, ifstream& ans) {
   //read input
@@ -19,11 +23,30 @@ int gradeFile(ifstream& in, ifstream& ans) {
   
   //read answer
   //TODO read answer
+  long r, c, veh, n, bon;
+  in >> r >> c >> veh >> n >> bon;
 
+  vector<long> distances;
+  for (int i = 0; i < n; i++) {
+    long a, b, x, y;
+    in >> a >> b >> x >> y;
+    distances.push_back(manhattan(a, b, x, y));
+  }
+  // ignore bonus
+  long points = 0;
+  for (int i = 0; i < veh; i++) {
+    long num;
+    ans >> num;
+
+    for (int j = 0; j < num; j++) {
+      long r;
+      ans >> r;
+      points += distances[r];
+    }
+  }
   //compute score
   //TODO compute score
-
-  return -1;
+  return points;
 }
 
 //iterate over all test cases
