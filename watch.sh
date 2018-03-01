@@ -16,6 +16,7 @@ do
 			cp -r grader $dir
 			cp -r visualize $dir
 			cp Makefile $dir
+			cp watch.sh $dir
 			cp README.md $dir
 			cp LICENCE $dir
 			git checkout master
