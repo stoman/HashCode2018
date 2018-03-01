@@ -26,7 +26,7 @@ void assignrides(Input& input) {
         
         auto cell = cellid(input, r, c);
         input.cntcars[cell.first][cell.second]--;
-        double max_score = -99999999999.9;
+        double max_score = -99999999.9;
 
         int bi = -1;
         
