@@ -26,7 +26,7 @@ void assignrides(Input& input) {
     
         int t = q.begin()->first;
 
-        while (lastStartPoint(input, priorides.begin()->second) < t)
+        while (priorides.size() && lastStartPoint(input, priorides.begin()->second) < t)
         {
             priorides.erase(priorides.begin());
         }
