@@ -30,7 +30,7 @@ void assignrides(Input& input) {
 
         int bi = -1;
         
-        if (true)//if (rides.size() == 1)
+        if (rides.size() > 700)//if (rides.size() == 1)
         {
             for (auto i = rides.begin(); i != rides.end(); i++) {
                 int next_ride = *i;
