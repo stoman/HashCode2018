@@ -27,9 +27,16 @@ double score(Input& input, int time, int r, int c, int ride, int carid) {
   double pretimefactor = -1.0;
   double pretimesquarefactor = -.001;
   double cardistancefactor = -10000.0 / input.f;
-  double gridfactor = 2.0;
+  double gridfactor = 100.0;
   int gridsize = 500;
   int timegrid = 5000;
+
+  if(input.problem == 'd') {
+    pretimefactor = -0.01;
+    pretimesquarefactor = 0;
+    cardistancefactor = -1000.0 / input.f;
+    gridfactor = 1500.0;
+  }
 
   //end time
 	int pretime = abs(r - input.ra[ride]) + abs(c - input.rb[ride]);
@@ -82,7 +89,7 @@ double score(Input& input, int time, int r, int c, int ride, int carid) {
   }
 
   //scoring: grid
-  double gridscore = gridfactor * ridescore[input.rx[ride]/gridsize][input.ry[ride]/gridsize][endtime/timegrid];
+  double gridscore = gridfactor * (ridescore[input.rx[ride]/gridsize][input.ry[ride]/gridsize][endtime/timegrid] > 0 ? 1.0 : 0.0);
   sumgridscore += gridscore;
   score += gridscore;
 
