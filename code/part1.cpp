@@ -14,6 +14,7 @@ void assignrides(Input& input) {
     
         int t = q.begin()->first;
         int car = q.begin()->second;
+        cerr << t << ' ' << car << endl;
         q.erase(q.begin());
         
         int r = 0, c = 0;
@@ -23,10 +24,14 @@ void assignrides(Input& input) {
             c = input.ry[last_ride];
         }
         
+<<<<<<< HEAD
         auto cell = cellid(input, r, c);
         input.cntcars[cell.first][cell.second]--;
         
         double max_score = -1.0;
+=======
+        double max_score = -99999999999.9;
+>>>>>>> e030ec5e954a2f648f6a988b13966c2b07afe06c
         int bi = -1;
         
         if (true)//if (rides.size() == 1)

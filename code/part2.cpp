@@ -7,6 +7,8 @@ int endtime(Input& input, int time, int r, int c, int ride) {
   return time + pretime + drivetime;
 }
 
+vector<vector<vector<int>>> ridescore;
+
 double score(Input& input, int time, int r, int c, int ride, int carid) {
   //coefficients
   double drivetimefactor = 1.0;
@@ -14,6 +16,9 @@ double score(Input& input, int time, int r, int c, int ride, int carid) {
   double pretimefactor = -1.0;
   double pretimesquarefactor = -.001;
   double cardistancefactor = -0.2 / input.f;
+  double gridfactor = 10.0;
+  int gridsize = 500;
+  int timegrid = 5000;
 
   //end time
 	int pretime = abs(r - input.ra[ride]) + abs(c - input.rb[ride]);
@@ -21,7 +26,8 @@ double score(Input& input, int time, int r, int c, int ride, int carid) {
     pretime = input.rs[ride] - time;
   }
   int drivetime = abs(input.ra[ride] - input.rx[ride]) + abs(input.rb[ride] - input.ry[ride]);
-  if(time + pretime + drivetime > input.rf[ride]) {
+  int endtime = time + pretime + drivetime;
+  if(endtime > input.rf[ride]) {
     return -99999999999.9;
   }
 
@@ -40,21 +46,43 @@ double score(Input& input, int time, int r, int c, int ride, int carid) {
 
   //score: bonus
   debug("bonus");
-  double bonus = time + pretime == input.rs[ride] ? input.b : 0.0;
+  double bonus = time + pretime == input.rs[ride] ? bonusfactor * input.b : 0.0;
   debug(bonus);
   score += bonus;
 
-  //scoring: car distance time
+  //scoring: car distance
   double cardistscore = 0;
   for(int c = 0; c < input.f; c++) {
-    if(c == carid || input.paths[c].size() == 0) {
-      continue;
+    if(c != carid && input.paths[c].size() != 0) {
+      cardistscore += cardistancefactor * (abs(input.rx[input.paths[c].back()] - input.rx[ride]) + abs(input.ry[input.paths[c].back()] - input.ry[ride]));
     }
-    cardistscore += cardistancefactor * (abs(input.rx[input.paths[c].back()] - input.rx[ride]) + abs(input.ry[input.paths[c].back()] - input.ry[ride]));
   }
   debug("car dist score");
   debug(cardistscore);
   score += cardistscore;
+
+  //fill ridescore
+  if(ridescore.size() == 0) {
+    ridescore.resize(input.r/gridsize + 2);
+    for(int i = 0; i < ridescore.size(); i++) {
+      ridescore[i].resize(input.c/gridsize + 2);
+      for(int j = 0; j < ridescore[i].size(); j++) {
+        ridescore[i][j].resize(input.t/timegrid + 2);
+      }
+    }
+    for(int i = 0; i < input.n; i++) {
+      int laststart = input.rf[i] - abs(input.ra[i] - input.rx[i]) - abs(input.rb[i] - input.ry[i]);
+      for(int t = input.rs[i]; ; t += timegrid) {
+        ridescore[input.ra[i]/gridsize][input.rb[i]/gridsize][t/timegrid];
+      }
+    }
+  }
+
+  //scoring: grid
+  double gridscore = gridfactor * ridescore[input.rx[i]/gridsize][input.ry[i]/gridsize][endtime/timegrid];
+  debug("grid score");
+  debug(gridscore);
+  score += gridscore;
 
   //return
   return score;
