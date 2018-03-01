@@ -26,7 +26,7 @@ double score(Input& input, int time, int r, int c, int ride, int carid) {
   double bonusfactor = 1.0;
   double pretimefactor = -1.0;
   double pretimesquarefactor = -.001;
-  double cardistancefactor = -10.0 / input.f;
+  double cardistancefactor = -10000.0 / input.f;
   double gridfactor = 2.0;
   int gridsize = 500;
   int timegrid = 5000;
@@ -47,7 +47,7 @@ double score(Input& input, int time, int r, int c, int ride, int carid) {
   sumdrivescore += drivetimefactor * drivetime;
   score += drivetimefactor * drivetime;
 
-  sumprescore = pretimefactor * pretime;
+  sumprescore += pretimefactor * pretime;
   score += pretimefactor * pretime;
   sumpresquarescore += pretimesquarefactor * pretime * pretime;
   score += pretimesquarefactor * pretime * pretime;

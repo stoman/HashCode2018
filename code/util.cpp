@@ -27,7 +27,7 @@ struct Input {
   int r, c, f, n, b, t;
   vector<vector<int>> paths, cntcars;
   vector<ll> ra, rb, rx, ry, rs, rf;
-  int cellcnt = 10;
+  int cellcnt = 5;
 };
 
 //input handling
