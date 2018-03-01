@@ -29,5 +29,11 @@ int main(int argc, char* argv[]) {
 	}
 	
 	//print output
-	//TODO print output
+	for(int i = 0; i < input.f; i++) {
+		cout << input.paths[i].size();
+		for(int j: input.paths[i]) {
+			cout << ' ' << j;
+		}
+		cout << endl;
+	}
 };
