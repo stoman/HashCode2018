@@ -23,12 +23,13 @@ void debug (T x)
 }
 
 //util classes
-struct SomeClass {
-	int n;
-	SomeClass(int n): n(n) {};
-};
-
 struct Input {
+  int r, c, f, n, b, t;
+  //ride i = 2i->2i+1, start 2n+2, target 2n+3 -> 2n+4 nodes
+  vector<vector<int>> adj;
+  vector<vector<ll>> dist;
+  vector<vector<int>> car;
+  vector<vector<int>> paths;
 };
 
 //input handling
