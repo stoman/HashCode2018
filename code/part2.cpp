@@ -3,7 +3,7 @@
 
 int endtime(Input& input, int time, int r, int c, int ride) {
   int pretime = abs(r - input.ra[ride]) + abs(c - input.rb[ride]);
-  int ctime = max(time + pretime, input.rs[ride]);
+  int ctime = max((ll) time + pretime, input.rs[ride]);
   int drivetime = abs(input.ra[ride] - input.rx[ride]) + abs(input.rb[ride] - input.ry[ride]);
   return ctime + drivetime;
 }
