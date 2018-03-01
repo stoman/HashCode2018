@@ -37,6 +37,10 @@ double score(Input& input, int time, int r, int c, int ride, int carid) {
     cardistancefactor = 0;
     gridfactor = 150.0;
   }
+  else if(input.problem == 'c') {
+    pretimefactor = -10.0;
+    pretimesquarefactor = -0.01;
+  }
 
   //end time
 	int pretime = abs(r - input.ra[ride]) + abs(c - input.rb[ride]);
