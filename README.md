@@ -1,8 +1,7 @@
 # Hash Code 2018
 
-This is the submission of team TUMbleweed for the Online Qualification Round
-of Google Hash Code 2018. It will only be published after the contest has
-concluded.
+Those are the practice submissions of team TUMbleweed for Google Hash Code
+2018.
 
 You can find more information about the contest at
 https://hashcode.withgoogle.com/.
@@ -18,9 +17,6 @@ grader that computes the score of submissions. To run it first create the
 output files (for instance by `make data`), then call `make grades.html` and
 open the resulting HTML file in a browser. More commands can be found in the
 `Makefile`.
-
-Most code is written during the 4 hours of the contest and therefore not
-optimized.
 
 # Authors
 

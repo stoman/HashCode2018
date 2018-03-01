@@ -1,6 +1,7 @@
 #pragma once
 
 typedef long long ll;
+typedef pair<ll, ll> Point;
 
 #include <algorithm>
 #include <iostream>
@@ -10,8 +11,16 @@ typedef long long ll;
 #include <time.h>
 #include <utility>
 #include <vector>
+#include <set>
+#include <sstream>
 
 using namespace std;
+
+template<typename T>
+void debug (T x)
+{
+	cerr << ">>> " << x << endl;
+}
 
 //util classes
 struct SomeClass {
