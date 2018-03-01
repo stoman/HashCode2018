@@ -30,9 +30,24 @@ struct Input {
   vector<vector<ll>> dist;
   vector<vector<int>> car;
   vector<vector<int>> paths;
+  vector<ll> ra, rb, rx, ry, rs, rt;
+  vector<int> curride;
 };
 
 //input handling
 void readInput(Input& input, istream& in) {
-	//TODO read input
+	in >> input.r >> input.c >> input.f >> input.n >> input.b >> input.t;
+  input.ra.resize(input.n);
+  input.rb.resize(input.n);
+  input.rx.resize(input.n);
+  input.ry.resize(input.n);
+  input.rs.resize(input.n);
+  input.rt.resize(input.n);
+  input.adj.resize(2*input.n+4);
+  input.dist.resize(2*input.n+4);
+  input.car.resize(2*input.n+4);
+  input.paths.resize(input.n);
+  for(int i = 0; i < input.n; i++) {
+    in >> input.ra[i] >> input.rb[i] >> input.rx[i] >> input.ry[i] >> input.rs[i] >> input.rt[i];
+  }
 }

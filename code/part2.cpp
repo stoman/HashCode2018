@@ -1,6 +1,6 @@
 #pragma once
 #include "util.cpp"
 
-vector<int> bf(Input& input) {
+double score(Input& input, int time, int r, int c, int ride) {
 	//TODO fill me
 }
