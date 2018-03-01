@@ -11,31 +11,26 @@ ll lastStartPoint(Input &input, int ride)
 
 void assignrides(Input& input) {
     set<pair<int,int>> q;
-    set<int> rides;
+  // set<int> rides;
+    set<pair<int,int>> priorides;
     
     for (int i = 0; i < input.f; i++)
         q.insert({0,i});
     for (int i = 0; i < input.n; i++)
     {
-        //priorides.insert(make_pair(input.rs[i],i));
-        rides.insert(i);
+        priorides.insert(make_pair(input.rs[i],i));
+        //rides.insert(i);
     }
          
     while (q.size() && q.begin()->first < input.t)    {
     
         int t = q.begin()->first;
 
-
-        /*vector<int> deleteIds;
-        for (auto i = rides.begin(); i != rides.end(); ++i)
+        while (priorides.size() && lastStartPoint(input, priorides.begin()->second) < t)
         {
-            if (lastStartPoint(input, *i) < t)
-                deleteIds.push_back(*i);
+            priorides.erase(priorides.begin());
         }
-        for (int k : deleteIds)
-        {
-            rides.erase(k);
-        }*/
+
 
         int car = q.begin()->second;
         cerr << t << ' ' << car << endl;
@@ -53,40 +48,43 @@ void assignrides(Input& input) {
         double max_score = -inf;
 
         int bi = -1;
+        int prio = -1;
         
-        if (rides.size() > 0)//if (rides.size() == 1)
+        if (priorides.size() > 700)//if (rides.size() == 1)
         {
-            for (auto i = rides.begin(); i != rides.end(); i++) {
-                int next_ride = *i;
+            for (auto i = priorides.begin(); i != priorides.end(); i++) {
+                int next_ride = i->second;
                 double sc1 = score(input, t, r, c, next_ride, car);
                 if (sc1 > max_score)
                 {
                     max_score = sc1;
-                    bi = *i;  
+                    bi = i->second;  
+                    prio = i->first;
                 }
             }
         }
         
         else    
         {
-            for (auto i = rides.begin(); i != rides.end(); i++) {
-                for (auto j = rides.begin(); j != rides.end(); j++) 
+            for (auto i = priorides.begin(); i != priorides.end(); i++) {
+                for (auto j = priorides.begin(); j != priorides.end(); j++) 
                 {
                     if (i == j)
                         continue;
                 
-                    int next_ride = *i;
+                    int next_ride = i->second;
                     double sc1 = score(input, t, r, c, next_ride, car);
                 
                     int nr = input.rx[next_ride];
                     int nc = input.ry[next_ride];
                 
-                    double sc2 = score(input, t, nr, nc, *j, car);
+                    double sc2 = score(input, t, nr, nc, j->second, car);
             
                     if (sc1 + sc2 > max_score)
                     {
                         max_score = sc1+sc2;
-                        bi = *i;
+                        bi = i->second;
+                        prio = i->first;
                     }
                 }
             }
@@ -95,7 +93,7 @@ void assignrides(Input& input) {
         if (bi != -1)
         {
             input.paths[car].push_back(bi);
-            rides.erase(bi);
+            priorides.erase({prio,bi});
             q.insert({endtime(input, t, r, c, bi), car});
     
             auto cell = cellid(input, input.rx[bi], input.ry[bi]); 
