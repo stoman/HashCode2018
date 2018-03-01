@@ -26,7 +26,7 @@ void assignrides(Input& input) {
         double max_score = -1.0;
         int bi = -1;
         
-        if (rides.size() == 1)
+        if (true)//if (rides.size() == 1)
         {
             for (auto i = rides.begin(); i != rides.end(); i++) {
                 int next_ride = *i;
@@ -42,7 +42,8 @@ void assignrides(Input& input) {
         else    
         {
             for (auto i = rides.begin(); i != rides.end(); i++) {
-                for (auto j = rides.begin(); j != rides.end(); j++) {
+                for (auto j = rides.begin(); j != rides.end(); j++) 
+                {
                     if (i == j)
                         continue;
                 
