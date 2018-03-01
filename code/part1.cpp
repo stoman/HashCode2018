@@ -1,7 +1,7 @@
 #pragma once
 #include "util.cpp"
 
-void assigncars(Input& input) {
+void assignrides(Input& input) {
     set<pair<int,int>> q;
     set<int> rides;
     
@@ -10,16 +10,19 @@ void assigncars(Input& input) {
     for (int i = 0; i < input.n; i++)
         rides.insert(i);
          
-        
     while (q.size() && q.begin()->first < input.t)    {
     
         int t = q.begin()->first;
         int car = q.begin()->second;
         q.erase(q.begin());
         
-        int last_ride = input.path[car].back();
-        int r = input.rx[last_ride];
-        int c = input.ry[last_ride];
+        int r = 0, c = 0;
+        if (input.paths[car].size())    {
+            int last_ride = input.paths[car].back();
+            r = input.rx[last_ride];
+            c = input.ry[last_ride];
+        }
+        
         double max_score = -1.0;
         int bi = -1;
         
@@ -30,7 +33,7 @@ void assigncars(Input& input) {
                 double sc1 = score(input, t, r, c, next_ride, car);
                 if (sc1 > max_score)
                 {
-                    max_score = s1+s2;
+                    max_score = sc1;
                     bi = *i;  
                 }
             }
@@ -53,7 +56,7 @@ void assigncars(Input& input) {
             
                     if (sc1 + sc2 > max_score)
                     {
-                        max_score = s1+s2;
+                        max_score = sc1+sc2;
                         bi = *i;
                     }
                 }
@@ -62,9 +65,9 @@ void assigncars(Input& input) {
         
         if (bi != -1)
         {
-            input.path[car].push_back(bi);
+            input.paths[car].push_back(bi);
             rides.erase(bi);
-            q.insert({endtime(input, t, r, c, next_ride), car});
+            q.insert({endtime(input, t, r, c, bi), car});
         }
     }
 }
