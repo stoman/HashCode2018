@@ -24,9 +24,9 @@ double score(Input& input, int time, int r, int c, int ride, int carid) {
   //coefficients
   double drivetimefactor = 1.0;
   double bonusfactor = 2.0;
-  double pretimefactor = -1.0;
-  double pretimesquarefactor = -.001;
-  double cardistancefactor = -10000.0 / input.f;
+  double pretimefactor = -50.0;
+  double pretimesquarefactor = -.05;
+  double cardistancefactor = 0;
   double gridfactor = 100.0;
   int gridsize = 500;
   int timegrid = 1000;
@@ -38,8 +38,9 @@ double score(Input& input, int time, int r, int c, int ride, int carid) {
     gridfactor = 150.0;
   }
   else if(input.problem == 'c') {
-    pretimefactor = -10.0;
-    pretimesquarefactor = -0.01;
+    pretimefactor = -100.0;
+    pretimesquarefactor = -0.05;
+    cardistancefactor = 0;
   }
 
   //end time
