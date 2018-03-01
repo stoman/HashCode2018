@@ -1,1 +1,35 @@
-fill me
+a example
+    3 rows
+    4 columns
+    2 vehicles
+    3 rides
+    2 bonus
+    10 steps
+
+b should be easy
+    800 x 1000
+    100 vehicles
+    300 rides
+    25 bonus
+    25000 steps
+
+c no hurry
+    3000 x 2000
+    81 vehicles
+    10k rides
+    1 bonus
+    200k steps
+
+d metropolis
+    10k x 10k
+    400 vehicles
+    10k rides
+    2 bonus
+    50k steps
+
+e high bonus
+    1500 x 2000
+    350 vehicles
+    10k rides
+    1k bonus
+    150k steps
