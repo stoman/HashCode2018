@@ -21,6 +21,7 @@ int main(int argc, char* argv[]) {
 	cerr << "using algorithm " << algorithm << endl;
 	if(algorithm == "naive") {
 		assignrides(input);
+		log();
 	}
 	else {
 		cerr << "unknown algorithm" << endl;

@@ -9,14 +9,24 @@ int endtime(Input& input, int time, int r, int c, int ride) {
 
 vector<vector<vector<int>>> ridescore;
 
+double sumdrivescore = 0;
+double sumprescore = 0;
+double sumpresquarescore = 0;
+double sumbonusscore = 0;
+double sumcardistscore = 0;
+double sumgridscore = 0;
+int tries = 0;
+
 double score(Input& input, int time, int r, int c, int ride, int carid) {
+  tries++;
+
   //coefficients
   double drivetimefactor = 1.0;
   double bonusfactor = 1.0;
   double pretimefactor = -1.0;
   double pretimesquarefactor = -.001;
-  double cardistancefactor = -0.2 / input.f;
-  double gridfactor = 10.0;
+  double cardistancefactor = -10.0 / input.f;
+  double gridfactor = 2.0;
   int gridsize = 500;
   int timegrid = 5000;
 
@@ -33,29 +43,24 @@ double score(Input& input, int time, int r, int c, int ride, int carid) {
 
   //scoring: drive time, pre time
   double score = 0;
-  debug("drive time");
-  debug(drivetimefactor * drivetime);
+  sumdrivescore += drivetimefactor * drivetime;
   score += drivetimefactor * drivetime;
 
-  debug("pre time");
-  debug(pretimefactor * pretime);
+  sumprescore = pretimefactor * pretime;
   score += pretimefactor * pretime;
-  debug("pre time square");
-  debug(pretimesquarefactor * pretime * pretime);
+  sumpresquarescore += pretimesquarefactor * pretime * pretime;
   score += pretimesquarefactor * pretime * pretime;
 
   //score: bonus
-  debug("bonus");
   double bonus = time + pretime == input.rs[ride] ? bonusfactor * input.b : 0.0;
-  debug(bonus);
+  sumbonusscore += bonus;
   score += bonus;
 
   //scoring: car distance
   double cardistscore = 0;
   auto cell = cellid(input, input.rx[ride], input.ry[ride]);
   cardistscore += cardistancefactor * input.cntcars[cell.first][cell.second];
-  debug("car dist score");
-  debug(cardistscore);
+  sumcardistscore += cardistscore;
   score += cardistscore;
 
   //fill ridescore
@@ -70,17 +75,25 @@ double score(Input& input, int time, int r, int c, int ride, int carid) {
     for(int i = 0; i < input.n; i++) {
       int laststart = input.rf[i] - abs(input.ra[i] - input.rx[i]) - abs(input.rb[i] - input.ry[i]);
       for(int t = input.rs[i]; t < laststart; t += timegrid) {
-        ridescore[input.ra[i]/gridsize][input.rb[i]/gridsize][t/timegrid];
+        ridescore[input.ra[i]/gridsize][input.rb[i]/gridsize][t/timegrid] += 1;
       }
     }
   }
 
   //scoring: grid
   double gridscore = gridfactor * ridescore[input.rx[ride]/gridsize][input.ry[ride]/gridsize][endtime/timegrid];
-  debug("grid score");
-  debug(gridscore);
+  sumgridscore += gridscore;
   score += gridscore;
 
   //return
   return score;
+}
+
+void log() {
+  cerr << "drive " << sumdrivescore / tries << endl;
+  cerr << "pre " << sumprescore / tries << endl;
+  cerr << "pre square " << sumpresquarescore / tries << endl;
+  cerr << "bonus " << sumbonusscore / tries << endl;
+  cerr << "car dist " << sumcardistscore / tries << endl;
+  cerr << "grid " << sumgridscore / tries << endl;
 }
